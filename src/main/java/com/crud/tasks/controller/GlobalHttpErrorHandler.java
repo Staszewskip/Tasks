@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class GlobalHttpsErrorHandler extends ResponseEntityExceptionHandler {
+public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(TaskNotFoundException.class)
     public ResponseEntity<Object> handleTaskNotFoundException(TaskNotFoundException exception) {
         return new ResponseEntity<>("Task with given id not exists", HttpStatus.BAD_REQUEST);
