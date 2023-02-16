@@ -26,7 +26,7 @@ public class EmailScheduler {
                         adminConfig.getAdminMail(),
                         SUBJECT,
                         "Currently in database you got: " + size + " " + nbOfTasks,
-                        ""
+                        null
                 )
         );
     }
