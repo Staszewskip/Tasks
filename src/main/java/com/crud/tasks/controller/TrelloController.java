@@ -3,7 +3,7 @@ package com.crud.tasks.controller;
 import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
-import com.crud.tasks.trello.client.TrelloClient;
+import com.crud.tasks.service.TrelloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class TrelloController {
-    private final TrelloClient trelloClient;
+    private final TrelloService trelloService;
 //metoda wyświetlająca tablice Trello w konsoli
 //    @GetMapping("boards")
 //    public void getTrelloBoards() {
-//        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+//        List<TrelloBoardDto> trelloBoards = trelloService.getTrelloBoards();
 //
 //        trelloBoards.forEach(trelloBoardDto -> {
 //            System.out.println(trelloBoardDto.getId() + " - " + trelloBoardDto.getName());
@@ -32,13 +32,12 @@ public class TrelloController {
 
     @GetMapping("boards")
     public ResponseEntity<List<TrelloBoardDto>> getTrelloBoards() {
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-        return ResponseEntity.ok(trelloClient.getTrelloBoards());
+          return ResponseEntity.ok(trelloService.fetchTrelloBoards());
     }
 
 
     @PostMapping("cards")
     public ResponseEntity<CreatedTrelloCard> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return ResponseEntity.ok(trelloClient.createNewCard(trelloCardDto));
+        return ResponseEntity.ok(trelloService.createTrelloCard(trelloCardDto));
     }
 }
