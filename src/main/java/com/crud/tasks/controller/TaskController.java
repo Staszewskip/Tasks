@@ -1,7 +1,7 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.Task;
-import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.domain.dto.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "{taskId}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) throws TaskNotFoundException{
         service.deleteTask(taskId);
         return ResponseEntity.ok().build();
     }
