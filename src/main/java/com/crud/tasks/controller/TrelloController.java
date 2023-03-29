@@ -1,6 +1,6 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.domain.dto.CreatedTrelloCardDto;
 import com.crud.tasks.domain.dto.TrelloBoardDto;
 import com.crud.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class TrelloController {
     }
 
     @PostMapping("cards")
-    public ResponseEntity<TrelloCardDto> createTrelloCard(@RequestBody com.crud.tasks.domain.dto.TrelloCardDto trelloCardDto) {
+    public ResponseEntity<CreatedTrelloCardDto> createTrelloCard(@RequestBody com.crud.tasks.domain.dto.TrelloCardDto trelloCardDto) {
         return ResponseEntity.ok(trelloFacade.createCard(trelloCardDto));
     }
 }

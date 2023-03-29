@@ -18,7 +18,7 @@ public class TrelloMapperTest {
     TrelloMapper trelloMapper = new TrelloMapper();
 
     @Test
-    void shouldMapTrelloBoardsDto() {
+    void shouldMapTrelloCardsDto() {
         // Given
         TrelloCardDto trelloCardDto = new TrelloCardDto("name", "description", "pos", "listId");
         TrelloCard trelloCard = new TrelloCard("name", "description", "pos", "listId");
@@ -26,7 +26,7 @@ public class TrelloMapperTest {
         // When
         TrelloCardDto resultTrelloCardDto = trelloMapper.mapToCardDto(trelloCard);
         TrelloCard resultTrelloCard = trelloMapper.mapToCard(trelloCardDto);
-        //Then
+        // Then
         assertEquals(trelloCardDto, resultTrelloCardDto);
         assertEquals(trelloCard, resultTrelloCard);
     }
@@ -34,13 +34,13 @@ public class TrelloMapperTest {
     @Test
     void shouldMapTrelloListDto() {
         // Given
-        List<TrelloListDto> trelloListDto = new ArrayList<>();
-        List<TrelloList> trelloList = new ArrayList<>();
+        List<TrelloListDto> trelloListDto = List.of(new TrelloListDto("id", "name", false));
+        List<TrelloList> trelloList = List.of(new TrelloList("id", "name", false));
 
         // When
         List<TrelloListDto> resultTrelloListDto = trelloMapper.mapToListDto(trelloList);
         List<TrelloList> resultTrelloList = trelloMapper.mapToList(trelloListDto);
-        //Then
+        // Then
         assertEquals(trelloList, resultTrelloList);
         assertEquals(trelloListDto, resultTrelloListDto);
     }
@@ -48,13 +48,13 @@ public class TrelloMapperTest {
     @Test
     void shouldMapTrelloBoardDto() {
         // Given
-        List<TrelloBoardDto> trelloBoardDto = new ArrayList<>();
-        List<TrelloBoard> trelloBoard = new ArrayList<>();
+        List<TrelloBoardDto> trelloBoardDto = List.of(new TrelloBoardDto("id", "name", new ArrayList<>()));
+        List<TrelloBoard> trelloBoard = List.of(new TrelloBoard("id", "name", new ArrayList<>()));
 
         // When
         List<TrelloBoardDto> resultTrelloBoardDto = trelloMapper.mapToBoardsDto(trelloBoard);
         List<TrelloBoard> resultTrelloBoard = trelloMapper.mapToBoards(trelloBoardDto);
-        //Then
+        // Then
         assertEquals(trelloBoard, resultTrelloBoard);
         assertEquals(trelloBoardDto, resultTrelloBoardDto);
     }
