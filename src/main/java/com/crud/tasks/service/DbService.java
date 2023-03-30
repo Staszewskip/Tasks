@@ -8,9 +8,11 @@ import com.crud.tasks.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class DbService {
     private final TaskRepository repository;
