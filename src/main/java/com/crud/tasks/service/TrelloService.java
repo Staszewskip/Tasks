@@ -1,9 +1,10 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.config.AdminConfig;
-import com.crud.tasks.domain.dto.CreatedTrelloCardDto;
 import com.crud.tasks.domain.Mail;
+import com.crud.tasks.domain.dto.CreatedTrelloCardDto;
 import com.crud.tasks.domain.dto.TrelloBoardDto;
+import com.crud.tasks.domain.dto.TrelloCardDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class TrelloService {
         return trelloClient.getTrelloBoards();
     }
 
-    public CreatedTrelloCardDto createTrelloCard(final com.crud.tasks.domain.dto.TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto createTrelloCard(final TrelloCardDto trelloCardDto) {
         CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
         ofNullable(newCard).ifPresent(card -> emailService.send(new Mail(adminConfig.getAdminMail(),
                 SUBJECT,
